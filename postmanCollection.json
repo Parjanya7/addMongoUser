@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "13ee9dfa-bd32-4117-bc46-07fd38ddf88f",
+		"name": "addFetchUserCollection",
+		"description": "The requests do not have any validations.\n\npaths:\n\n1) localhost:3005/user/addUser : req.body => ID, Name, Username, PhoneNo\n2) localhost:3005/user/fetchUser : req.body => ID",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3005/user/addUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "Some Name",
+							"type": "text"
+						},
+						{
+							"key": "Username",
+							"value": "someUserName",
+							"type": "text"
+						},
+						{
+							"key": "PhoneNo",
+							"value": "6380541373",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3005/user/addUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"user",
+						"addUser"
+					]
+				},
+				"description": "To add user in database. \n-> req.body consist ID, Name, Username and PhonNo."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3005/user/fetchUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3005/user/fetchUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"user",
+						"fetchUser"
+					]
+				},
+				"description": "To add user in database. \n-> req.body consist ID of which user is needed to be fetched."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
