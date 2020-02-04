@@ -7,58 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "localhost:3005/user/addUser",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "ID",
-							"value": "2",
-							"type": "text"
-						},
-						{
-							"key": "Name",
-							"value": "Some Name",
-							"type": "text"
-						},
-						{
-							"key": "Username",
-							"value": "someUserName",
-							"type": "text"
-						},
-						{
-							"key": "PhoneNo",
-							"value": "6380541373",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost:3005/user/addUser",
-					"host": [
-						"localhost"
-					],
-					"port": "3005",
-					"path": [
-						"user",
-						"addUser"
-					]
-				},
-				"description": "To add user in database. \n-> req.body consist ID, Name, Username and PhonNo."
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:3005/user/fetchUser",
 			"request": {
 				"method": "POST",
@@ -92,6 +40,115 @@
 					]
 				},
 				"description": "To add user in database. \n-> req.body consist ID of which user is needed to be fetched."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3005/user/addUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ID",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "Name",
+							"value": "Fifth Name",
+							"type": "text"
+						},
+						{
+							"key": "Username",
+							"value": "fifthUserName",
+							"type": "text"
+						},
+						{
+							"key": "PhoneNo",
+							"value": "6380541373",
+							"type": "text"
+						},
+						{
+							"key": "Password",
+							"value": "fifthPassword",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3005/user/addUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"user",
+						"addUser"
+					]
+				},
+				"description": "No validations"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3005/user/login?Password=fifthPassword&Username=fifthUserName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Password",
+							"value": "fifthPassword",
+							"type": "text"
+						},
+						{
+							"key": "Username",
+							"value": "fifthUserName",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3005/user/login?Password=fifthPassword&Username=fifthUserName",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "Password",
+							"value": "fifthPassword"
+						},
+						{
+							"key": "Username",
+							"value": "fifthUserName"
+						}
+					]
+				},
+				"description": "No validations."
 			},
 			"response": []
 		}
