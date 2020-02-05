@@ -2,7 +2,7 @@ module.exports = {
 
     PORT: process.env.PORT || 3005,
 
-    middleWare: ( app, express, bodyParser ) => {
+    middleWare: (app, express, bodyParser) => {
 
         app.use(express.json());
         app.use(bodyParser.urlencoded({ extended: true }));

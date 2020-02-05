@@ -26,20 +26,27 @@ router.post('/addUser', (req, res) => {
             res.json({ msg: 'User could not be created.'});
         }
         else
-            res.json({ msg: 'User successfully created.'});
+            res.json({ msg: 'User successfully created.'}); // Client will be redirected to login page after this, I guess.
     });
 });
 
 router.post('/fetchUser', (req, res) => {
 
+    console.log(req.header.authKey);
+
     userModel.findOne({ ID: req.body.ID } ,(err, docs) => {
 
-        if(err){
-            console.log(err);
-            res.json({ msg: 'Some Error.' });
+        if(req.header.authKey === docs._id) {
+    
+            if(err){
+                console.log(err);
+                res.json({ msg: 'Some Error.', authKey: req.header.authKey });
+            }
+            else
+                res.json({ docs: docs, authKey: req.header.authKey });
         }
         else
-            res.json(docs);
+            res.json({ msg: 'False User.' }); 
     });
 });
 
@@ -54,7 +61,7 @@ router.post('/login', (req, res) => {
         if(!docs)
             res.json({ msg: 'Invalid Username' });
         else if(bcrypt.compareSync(req.body.Password, docs.Password))
-            res.json(docs);
+            res.json({ docs: docs, authKey: docs._id }); // _id of user will be sent as the authKey, which is unique for every users. Does not required to update at all.
         else
             res.json({ msg: 'Invalid Password'});
     });
