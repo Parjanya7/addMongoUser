@@ -32,5 +32,20 @@ module.exports = {
             else
                 console.log('Database Connected.');
         });
+    },
+
+    authKeyManagement: (cron) => {
+
+        cron.schedule( '0 1 * * *', () => {
+
+            const hat = require('hat');
+            const userModel = require('./Models/userModel');
+
+            userModel.find({}, (err, docs) => {
+
+                for(let i = 0; i < docs.length; i++)
+                    docs[i].authKey = hat();
+            });
+        });
     }
 };

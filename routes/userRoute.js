@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const userModel = require('../Models/userModel');
+const hat = require('hat');
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.post('/addUser', (req, res) => {
     insertVar.Username = req.body.Username;
     insertVar.Password = hashedPass;
     insertVar.PhoneNo = req.body.PhoneNo;
+    insertVar.authKey = hat();
 
     insertVar.save( err => {
 
@@ -36,17 +38,17 @@ router.post('/fetchUser', (req, res) => {
 
     userModel.findOne({ ID: req.body.ID } ,(err, docs) => {
 
-        if(req.header.authKey === docs._id) {
+        if(req.header.authKey === docs.authKey) {
     
             if(err){
                 console.log(err);
-                res.json({ msg: 'Some Error.', authKey: req.header.authKey });
+                res.json({ msg: 'Some Error.', authKey: docs.authKey });
             }
             else
                 res.json({ docs: docs, authKey: req.header.authKey });
         }
         else
-            res.json({ msg: 'False User.' }); 
+            res.json({ msg: 'False User.' }); // Login again instructions to be sent. 
     });
 });
 
@@ -61,7 +63,7 @@ router.post('/login', (req, res) => {
         if(!docs)
             res.json({ msg: 'Invalid Username' });
         else if(bcrypt.compareSync(req.body.Password, docs.Password))
-            res.json({ docs: docs, authKey: docs._id }); // _id of user will be sent as the authKey, which is unique for every users. Does not required to update at all.
+            res.json({ docs: docs, authKey: docs.authKey }); 
         else
             res.json({ msg: 'Invalid Password'});
     });

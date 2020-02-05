@@ -6,7 +6,8 @@ const schema = new mongoose.Schema({
     Name: { type: String, required: true },
     Password: { type: String, required: true },
     Username: { type: String, required: true},
-    PhoneNo: { type: Number, required: true }
+    PhoneNo: { type: Number, required: true },
+    authKey: { type: String, required: true }
 });
 
 module.exports = mongoose.model('userCollection', schema);
